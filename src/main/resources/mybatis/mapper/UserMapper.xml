@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiujiu.dao.UserMapper">
+<!--this is a standrad way to pick the data from the backend to the middle end-->
+    <select id="queryUserList" resultType="com.jiujiu.pojo.User">
+        select * from mybatis.users
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        select * from mybatis.users where id=#{id}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into mybatis.users (id,name,pwd) values (#{id},#{name},#{pwd})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update mybatis.users set name=#{name}, pwd=#{pwd} where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.users where id =#{id}
+    </delete>
+</mapper>
