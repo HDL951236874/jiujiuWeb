@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class RecordController {
-    @RequestMapping("/listRecord")
-    public String list(){
+public class PageController {
+    @RequestMapping("/recordPage")
+    public String showRecordPage(){
         return "setting";
     }
 }

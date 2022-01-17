@@ -12,10 +12,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img th:src="@{/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+                <img th:src="@{/img/pig.png}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">[[${session.loginUser}]]</a>
             </div>
         </div>
 
@@ -46,13 +46,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a th:href="@{/index.html}" th:class="${active=='index.html'?'nav-link active':'nav-link'}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>显示面板</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/listRecord}" class="nav-link">
+                            <a th:href="@{/recordPage}" th:class="${active=='setting.html'?'nav-link active':'nav-link'}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>记录界面</p>
                             </a>
