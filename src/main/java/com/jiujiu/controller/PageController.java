@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
     @RequestMapping("/recordPage")
-    public String showRecordPage(){
+    public String showRecordPage() {
         return "setting";
     }
+
 }

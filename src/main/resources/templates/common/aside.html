@@ -11,8 +11,17 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img th:src="@{/img/pig.png}" class="img-circle elevation-2" alt="User Image">
+            <div th:switch="${session.loginUser}">
+                <div th:case="handaolin">
+                    <div class="image">
+                        <img th:src="@{/img/dajiu.png}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                </div>
+                <div th:case="xuxiaobao">
+                    <div class="image">
+                        <img th:src="@{/img/xiaojiu.png}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                </div>
             </div>
             <div class="info">
                 <a href="#" class="d-block">[[${session.loginUser}]]</a>
@@ -55,6 +64,12 @@
                             <a th:href="@{/recordPage}" th:class="${active=='setting.html'?'nav-link active':'nav-link'}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>记录界面</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/users}" th:class="${active=='user.html'?'nav-link active':'nav-link'}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>设置用户</p>
                             </a>
                         </li>
                     </ul>

@@ -21,10 +21,6 @@ public class LoginController {
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
         List<User> userList = userMapper.queryUserList();
         for(User user:userList){
-            System.out.println(user.getName());
-            System.out.println(user.getPwd());
-            System.out.println(username);
-            System.out.println(password);
             if (user.getPwd().equals(password)&&user.getName().equals(username)){
                 session.setAttribute("loginUser",username);
                 return "redirect:/index.html";
@@ -32,7 +28,8 @@ public class LoginController {
         }
         model.addAttribute("msg","用户名和密码错误！");
         return "welcome";
-        //        if (!StringUtils.isEmpty(username) && "1234".equals(password)) {
+        // this is used as the backup of original program
+//        if (!StringUtils.isEmpty(username) && "1234".equals(password)) {
 //            session.setAttribute("loginUser", username);
 //            return "redirect:/index.html";
 //        } else {

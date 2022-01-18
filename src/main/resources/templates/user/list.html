@@ -6,7 +6,8 @@
     <title>setting page</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
     <!-- Ionicons -->
@@ -37,7 +38,7 @@
     <div th:replace="~{common/nav::navigate}"></div>
 
     <!-- Main Sidebar Container -->
-    <div th:replace="~{common/aside::adiseBar(active='setting.html')}"></div>
+    <div th:replace="~{common/aside::adiseBar(active='user.html')}"></div>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -45,7 +46,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">记录界面</h1>
+                        <h1 class="m-0">用户界面</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -60,49 +61,15 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">每日评分</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>评分</label>
-                                        <input class="form-control" placeholder="100">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>原因</label>
-                                            <div class="form-group">
-                                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">提交</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">评分历史记录</h3>
+                                <h3 class="card-title">用户列表</h3>
 
                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+                                    <div class="input-group input-group-sm" >
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
+                                            <a th:href="@{/user}" type="button" class="btn btn-block btn-primary btn-sm">添加</a>
                                         </div>
                                     </div>
                                 </div>
@@ -112,27 +79,22 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>第几次</th>
-                                        <th>用户</th>
-                                        <th>评分日期</th>
-                                        <th>分数</th>
-                                        <th>打分原因</th>
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>密码</th>
+                                        <th>用户等级</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>徐小宝</td>
-                                        <td>2022.1.6</td>
-                                        <td><span class="tag tag-success">100</span></td>
-                                        <td>老公表现的太好了</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>徐小宝</td>
-                                        <td>2022.1.17</td>
-                                        <td><span class="tag tag-success">95</span></td>
-                                        <td>今天老公陪我聊天，但是还是惹我生气了</td>
+                                    <tr th:each="user:${users}">
+                                        <td th:text="${user.getId()}"></td>
+                                        <td th:text="${user.getName()}"></td>
+                                        <td th:text="${user.getPwd()}"></td>
+                                        <td th:text="${user.getUserlevel()}"></td>
+                                        <td>
+                                            <a class="btn btn-sm btn-primary" th:href="@{/user/}+${user.getId()}">编辑</a>
+                                            <a class="btn btn-sm btn-danger" th:href="@{/deluser/}+${user.getId()}">删除</a>
+                                        </td>
                                     </tr>
 
                                     </tbody>
@@ -142,13 +104,14 @@
                         </div>
                         <!-- /.card -->
                     </div>
-                </div></div>
+                </div>
+            </div>
 
         </section>
         <!-- Main content -->
-<!--        <section class="content">-->
-<!--            <div th:replace="~{common/container::container}"></div>-->
-<!--        </section>-->
+        <!--        <section class="content">-->
+        <!--            <div th:replace="~{common/container::container}"></div>-->
+        <!--        </section>-->
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
